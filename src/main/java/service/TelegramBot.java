@@ -11,6 +11,7 @@ import pro.sky.telegrambot.configuration.TelegramBotConfiguration;
 public class TelegramBot extends TelegramLongPollingBot {
     final TelegramBotConfiguration telegramBotConfiguration;
 
+
     public TelegramBot(TelegramBotConfiguration telegramBotConfiguration) {
         this.telegramBotConfiguration = telegramBotConfiguration;
     }

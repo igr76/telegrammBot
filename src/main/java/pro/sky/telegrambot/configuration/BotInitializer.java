@@ -10,7 +10,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.generics.LongPollingBot;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
-
+/*
 @Component
 public class BotInitializer {
     @Autowired
@@ -20,10 +20,10 @@ public class BotInitializer {
     public void init() throws TelegramApiException {
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
         try {
-            telegramBotsApi.registerBot(bot);
+            telegramBotsApi.registerBot((LongPollingBot) bot);
         } catch (TelegramApiException e) {
 
         }
     }
 
-}
+}*/
