@@ -8,6 +8,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import pro.sky.telegrambot.configuration.TelegramBotConfiguration;
 
+import static org.springframework.data.repository.cdi.CdiRepositoryBean.getBean;
+
 @Component
 public class TelegramBot extends TelegramLongPollingBot {
     final TelegramBotConfiguration telegramBotConfiguration;
@@ -27,10 +29,9 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
 
     @Override
-    @Import(value = TelegramBotConfiguration.class )
-    public void onUpdateReceived(Update update) {
-         bot.setUpdateListener(this::handleUpdate)
 
+    public void onUpdateReceived(Update update) {
+        bot.setUpdateListener(this::handleUpdate);
         if (update.hasMessage() && update.getMessage().hasText()) {
             String messegeText = update.getMessage().getText();
             long chatId = update.getMessage().getChatId();
@@ -42,6 +43,10 @@ public class TelegramBot extends TelegramLongPollingBot {
                 default:sendMessage(chatId,"Sorry, command was not recognized");
             }
         }
+
+    }
+    private TelegramBot  updateListener() {
+        return getBean("TelegramBot", TelegramBot.class);
 
     }
 
