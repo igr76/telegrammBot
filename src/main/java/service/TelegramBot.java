@@ -1,6 +1,5 @@
 package service;
 
-import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -8,15 +7,17 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import pro.sky.telegrambot.configuration.TelegramBotConfiguration;
 
-import static org.springframework.data.repository.cdi.CdiRepositoryBean.getBean;
+;
 
 @Component
 public class TelegramBot extends TelegramLongPollingBot {
     final TelegramBotConfiguration telegramBotConfiguration;
 
 
+
     public TelegramBot(TelegramBotConfiguration telegramBotConfiguration) {
         this.telegramBotConfiguration = telegramBotConfiguration;
+
     }
     @Override
     public String getBotUsername() {
@@ -29,9 +30,8 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
 
     @Override
-
     public void onUpdateReceived(Update update) {
-        bot.setUpdateListener(this::handleUpdate);
+
         if (update.hasMessage() && update.getMessage().hasText()) {
             String messegeText = update.getMessage().getText();
             long chatId = update.getMessage().getChatId();
@@ -45,10 +45,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
 
     }
-    private TelegramBot  updateListener() {
-        return getBean("TelegramBot", TelegramBot.class);
 
-    }
 
     private void startCommandReceived(long chatId,String name) {
         String answer = "Hi," + name + ", nice to meet you";

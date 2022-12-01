@@ -10,13 +10,18 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.generics.LongPollingBot;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
-/*
-@Component
-public class BotInitializer {
-    @Autowired
-    TelegramBot bot;
 
-    @EventListener({ContextRefreshedEvent.class})
+@Component
+public class TelegramBotUpdateListener {
+    @Autowired
+    TelegramBot telegramBot;
+
+    public  TelegramBotUpdateListener(TelegramBot telegramBot) {
+        this.telegramBot = telegramBot;
+        this.telegramBot.setUpdatesListener(this);
+    }
+
+   /*@EventListener({ContextRefreshedEvent.class})
     public void init() throws TelegramApiException {
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
         try {
@@ -24,6 +29,6 @@ public class BotInitializer {
         } catch (TelegramApiException e) {
 
         }
-    }
+    }*/
 
-}*/
+}
