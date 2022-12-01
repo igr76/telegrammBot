@@ -1,5 +1,6 @@
 package service;
 
+import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -26,7 +27,10 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
 
     @Override
+    @Import(value = TelegramBotConfiguration.class )
     public void onUpdateReceived(Update update) {
+         bot.setUpdateListener(this::handleUpdate)
+
         if (update.hasMessage() && update.getMessage().hasText()) {
             String messegeText = update.getMessage().getText();
             long chatId = update.getMessage().getChatId();
