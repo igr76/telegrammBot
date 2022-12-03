@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class TelegramBotConfiguration {
 
-    @Value("SpringDemoBot")
+    @Value("igrBot")
     String botName;
     @Value("${telegram.bot.token}")
     private String token;
